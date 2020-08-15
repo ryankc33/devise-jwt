@@ -9,6 +9,18 @@ class ApplicationController < ActionController::API
   before_action :authenticate_jwt_with_jti_matcher_user!,
                 only: :jwt_with_jti_matcher_user_auth_action
 
+  def jwt_with_jti_matcher_user_testing_code_reload_action
+    ActiveSupport::Reloader.reload!
+
+    head current_jwt_with_jti_matcher_user.is_a?(JwtWithJtiMatcherUser) ? :ok : :internal_server_error
+  end
+
+  before_action :authenticate_jwt_with_jti_matcher_user!,
+    only: [
+      :jwt_with_jti_matcher_user_auth_action,
+      :jwt_with_jti_matcher_user_testing_code_reload_action
+  ]
+
   def jwt_with_denylist_user_auth_action
     head :ok
   end

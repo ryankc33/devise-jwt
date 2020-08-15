@@ -3,6 +3,10 @@ Rails.application.routes.draw do
       to: 'application#jwt_with_jti_matcher_user_auth_action',
       defauts: { format: :json }
 
+  get '/jwt_with_jti_matcher_user_testing_code_reload_action',
+      to: 'application#jwt_with_jti_matcher_user_testing_code_reload_action',
+      defauts: { format: :json }
+
   get '/jwt_with_denylist_user_auth_action',
       to: 'application#jwt_with_denylist_user_auth_action',
       defauts: { format: :json }
