@@ -5,4 +5,6 @@ class JwtWithJtiMatcherUser < ApplicationRecord
          :registerable,
          :jwt_authenticatable,
          jwt_revocation_strategy: self
+
+  has_and_belongs_to_many :some_class
 end
