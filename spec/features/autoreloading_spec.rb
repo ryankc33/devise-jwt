@@ -26,7 +26,7 @@ describe 'Autoreloading', type: :request do
       # Using Rails.application.reloader.reload! would force reload the entire application, which cleared sqlite database aswell
       Object.send(:remove_const, :JwtWithJtiMatcherUser)
       load 'spec/fixtures/rails_app/app/models/jwt_with_jti_matcher_user.rb'
-
+      ActiveSupport::Reloader.reload! # Needed so that ActiveSupport::Reloader.to_prepare triggers
       get_with_auth('/jwt_with_jti_matcher_user_testing_code_reload_action', auth)
 
       expect(response.status).to eq(200)
